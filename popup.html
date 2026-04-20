@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gmail Unsubscriber</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect width="22" height="22" rx="6" fill="#0f172a"/>
+            <path d="M4 7h14M4 7l7 6 7-6" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="3" y="7" width="16" height="11" rx="1.5" stroke="#334155" stroke-width="1.2" fill="none"/>
+            <circle cx="15.5" cy="14.5" r="3.5" fill="#ef4444"/>
+            <path d="M14 13l3 3M17 13l-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="app-name">Unsubscriber</span>
+      </div>
+      <div id="auth-status" class="auth-badge auth-unknown">
+        <span class="auth-dot"></span>
+        <span id="auth-label">Checking...</span>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main" id="main-content">
+
+      <!-- Auth screen -->
+      <section class="screen" id="screen-auth" style="display:none">
+        <div class="auth-prompt">
+          <div class="auth-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="20" fill="#1e293b"/>
+              <path d="M8 14h24M8 14l12 10 12-10" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+              <rect x="7" y="14" width="26" height="17" rx="2.5" stroke="#475569" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <h2>Connect Gmail</h2>
+          <p>Grant read access to your Gmail account to find and execute unsubscribe links.</p>
+          <button class="btn btn-primary" id="btn-login">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 110-12.064c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+            Sign in with Google
+          </button>
+        </div>
+      </section>
+
+      <!-- Input screen -->
+      <section class="screen" id="screen-input">
+        <div class="section-label">
+          <span>Sender email addresses</span>
+          <span id="sender-count" class="count-badge">0</span>
+        </div>
+        <textarea
+          id="sender-list"
+          class="sender-textarea"
+          placeholder="Paste one email address per line:&#10;&#10;newsletter@example.com&#10;updates@company.com&#10;promo@shop.com"
+          spellcheck="false"
+        ></textarea>
+
+        <div class="actions">
+          <button class="btn btn-ghost" id="btn-paste">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Paste
+          </button>
+          <button class="btn btn-ghost" id="btn-clear">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+            Clear
+          </button>
+          <button class="btn btn-ghost" id="btn-logout">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign out
+          </button>
+          <button class="btn btn-primary" id="btn-start" disabled>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Start
+          </button>
+        </div>
+      </section>
+
+      <!-- Progress screen -->
+      <section class="screen" id="screen-progress" style="display:none">
+        <div class="progress-header">
+          <div class="progress-stat">
+            <span class="stat-num" id="stat-done">0</span>
+            <span class="stat-label">done</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          <div class="progress-stat">
+            <span class="stat-num" id="stat-total">0</span>
+            <span class="stat-label">total</span>
+          </div>
+        </div>
+
+        <div class="log" id="log"></div>
+
+        <div class="actions actions-center">
+          <button class="btn btn-ghost" id="btn-new-run" style="display:none">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+            New run
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Gmail Unsubscriber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1a2e;
+      --ink-light:  #4a4a6a;
+      --ink-muted:  #8888aa;
+      --paper:      #faf9f6;
+      --paper-warm: #f4f2ec;
+      --rule:       #e2ddd5;
+      --accent:     #2d6a4f;
+      --accent-dim: #d8ede3;
+      --mono:       'DM Mono', monospace;
+      --serif:      'Lora', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--ink);
+      background: var(--paper);
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      padding: 56px 0 40px;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .masthead::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: var(--ink);
+      margin-top: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .meta {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Table of contents ── */
+    .toc {
+      background: var(--paper-warm);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--ink);
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+
+    .toc-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc-counter;
+    }
+
+    .toc li {
+      counter-increment: toc-counter;
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .toc li::before {
+      content: counter(toc-counter, decimal-leading-zero) ". ";
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-right: 4px;
+    }
+
+    .toc a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .toc a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 52px;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section:nth-child(1)  { animation-delay: 0.05s; }
+    .section:nth-child(2)  { animation-delay: 0.10s; }
+    .section:nth-child(3)  { animation-delay: 0.15s; }
+    .section:nth-child(4)  { animation-delay: 0.20s; }
+    .section:nth-child(5)  { animation-delay: 0.25s; }
+    .section:nth-child(6)  { animation-delay: 0.30s; }
+    .section:nth-child(7)  { animation-delay: 0.35s; }
+    .section:nth-child(8)  { animation-delay: 0.40s; }
+    .section:nth-child(9)  { animation-delay: 0.45s; }
+    .section:nth-child(10) { animation-delay: 0.50s; }
+
+    .section-number {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    h3 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink-light);
+      margin: 24px 0 8px;
+    }
+
+    p { margin-bottom: 16px; color: var(--ink-light); }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+      color: var(--ink-light);
+    }
+
+    li { margin-bottom: 6px; }
+
+    /* Callout box */
+    .callout {
+      background: var(--paper-warm);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 15px;
+    }
+
+    .callout strong { color: var(--ink); }
+
+    /* Mono tags */
+    code {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: var(--paper-warm);
+      border: 1px solid var(--rule);
+      padding: 1px 6px;
+      border-radius: 2px;
+      color: var(--ink);
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 2px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: white; font-size: 12px; }
+      .page { max-width: 100%; padding: 0; }
+      .masthead { padding: 24px 0 20px; }
+      .section { animation: none; page-break-inside: avoid; }
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 0 20px 60px; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="badge"><span class="badge-dot"></span>Legal Document</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      Gmail Unsubscriber Chrome Extension &nbsp;·&nbsp;
+      Effective Date: <span id="date">April 20, 2026</span> &nbsp;·&nbsp;
+      Version 1.0
+    </p>
+  </header>
+
+  <!-- Table of Contents -->
+  <nav class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#data-collected">What Data We Access</a></li>
+      <li><a href="#data-not-collected">What We Do Not Collect</a></li>
+      <li><a href="#how-data-used">How Data Is Used</a></li>
+      <li><a href="#data-storage">Data Storage &amp; Retention</a></li>
+      <li><a href="#third-parties">Third-Party Services</a></li>
+      <li><a href="#permissions">Chrome Permissions Explained</a></li>
+      <li><a href="#user-rights">Your Rights &amp; Controls</a></li>
+      <li><a href="#children">Children's Privacy</a></li>
+      <li><a href="#contact">Contact &amp; Updates</a></li>
+    </ol>
+  </nav>
+
+  <!-- Sections -->
+  <main>
+
+    <div class="section" id="overview">
+      <div class="section-number">01</div>
+      <h2>Overview</h2>
+      <p>Gmail Unsubscriber (the "Extension") is a Chrome browser extension that helps you remove yourself from unwanted email mailing lists. When you provide a list of sender email addresses and initiate a run, the Extension accesses your Gmail account solely to locate unsubscribe links within those emails and execute the unsubscribe action on your behalf.</p>
+      <div class="callout">
+        <strong>Plain-language summary:</strong> This Extension reads your emails only to find unsubscribe links. It does not store, transmit, sell, or share your email content or personal data with anyone. Everything runs locally in your browser.
+      </div>
+    </div>
+
+    <div class="section" id="data-collected">
+      <div class="section-number">02</div>
+      <h2>What Data We Access</h2>
+      <p>To perform its function, the Extension accesses the following data from your Gmail account, strictly on-demand and only when you initiate a run:</p>
+
+      <h3>Email metadata</h3>
+      <p>The Extension searches your inbox for emails matching the sender addresses you provide. It retrieves the message ID and basic metadata (sender, subject, date) of the most recent email from each sender.</p>
+
+      <h3>Email headers</h3>
+      <p>The Extension reads the <code>List-Unsubscribe</code> and <code>List-Unsubscribe-Post</code> headers of retrieved messages. These are technical fields added by mailing list software that contain unsubscribe URLs.</p>
+
+      <h3>Email body (when necessary)</h3>
+      <p>If no <code>List-Unsubscribe</code> header is present, the Extension reads the HTML and plain-text body of the email solely to locate an unsubscribe link using pattern matching. No body content is stored or transmitted.</p>
+
+      <h3>OAuth access token</h3>
+      <p>Chrome's built-in identity system provides a short-lived OAuth token to authenticate requests to the Gmail API. This token is managed entirely by Chrome and is never stored by the Extension.</p>
+    </div>
+
+    <div class="section" id="data-not-collected">
+      <div class="section-number">03</div>
+      <h2>What We Do Not Collect</h2>
+      <ul>
+        <li>We do <strong>not</strong> read, store, or transmit the content of your emails beyond locating unsubscribe links.</li>
+        <li>We do <strong>not</strong> collect your name, email address, or any other personal identifiers.</li>
+        <li>We do <strong>not</strong> track your browsing history or activity outside of the unsubscribe pages visited during a run.</li>
+        <li>We do <strong>not</strong> send any data to external servers. There is no backend server associated with this Extension.</li>
+        <li>We do <strong>not</strong> use analytics, telemetry, crash reporting, or any third-party tracking SDKs.</li>
+        <li>We do <strong>not</strong> sell, license, or share any data with third parties.</li>
+        <li>We do <strong>not</strong> use your data to train machine learning models.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="how-data-used">
+      <div class="section-number">04</div>
+      <h2>How Data Is Used</h2>
+      <p>All data accessed by the Extension is used for one purpose only: to locate and execute the unsubscribe action for sender addresses you explicitly provide. Specifically:</p>
+      <ol>
+        <li>Your list of sender addresses is used to query the Gmail API for matching messages.</li>
+        <li>Email headers and body content are scanned in memory to extract unsubscribe URLs.</li>
+        <li>Extracted URLs are navigated to in temporary background browser tabs.</li>
+        <li>The Extension attempts to click the unsubscribe button on those pages.</li>
+        <li>Background tabs are closed immediately after the action completes.</li>
+      </ol>
+      <p>No step in this process involves transmitting data outside your local browser environment.</p>
+    </div>
+
+    <div class="section" id="data-storage">
+      <div class="section-number">05</div>
+      <h2>Data Storage &amp; Retention</h2>
+      <p>The Extension stores only the following minimal data locally in Chrome's extension storage (<code>chrome.storage.local</code>):</p>
+      <ul>
+        <li><strong>Run summary:</strong> After a run completes, the total count of senders processed, succeeded, and failed, along with a timestamp. No sender addresses or email content are stored in this summary.</li>
+        <li><strong>In-progress updates:</strong> If the popup is closed mid-run, the most recent progress event is temporarily cached so the popup can restore its state when reopened. This is overwritten on every update and cleared at the end of each run.</li>
+      </ul>
+      <p>This data is stored locally on your device only, is never transmitted anywhere, and can be cleared at any time by removing the Extension from Chrome.</p>
+    </div>
+
+    <div class="section" id="third-parties">
+      <div class="section-number">06</div>
+      <h2>Third-Party Services</h2>
+
+      <h3>Google Gmail API</h3>
+      <p>The Extension uses the Google Gmail API to search for and retrieve emails. Your use of the Gmail API is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. The Extension requests only the minimum necessary Gmail scopes: read access and the ability to modify labels (used solely to support future trash functionality if enabled).</p>
+
+      <h3>Unsubscribe landing pages</h3>
+      <p>When the Extension navigates to an unsubscribe URL, you are briefly visiting a third-party website (e.g., the newsletter platform that sent the email). Those websites have their own privacy policies and may log the visit. The Extension does not control, and is not responsible for, the privacy practices of those sites.</p>
+
+      <h3>No other third parties</h3>
+      <p>The Extension does not integrate with any analytics services, advertising networks, data brokers, or any other third-party platforms.</p>
+    </div>
+
+    <div class="section" id="permissions">
+      <div class="section-number">07</div>
+      <h2>Chrome Permissions Explained</h2>
+      <p>The Extension requests the following Chrome permissions, each limited to what is strictly necessary:</p>
+      <ul>
+        <li><strong><code>identity</code></strong> — Authenticates your Google account via OAuth so the Extension can access the Gmail API on your behalf.</li>
+        <li><strong><code>tabs</code></strong> — Opens unsubscribe pages in temporary background tabs and closes them automatically after use.</li>
+        <li><strong><code>scripting</code></strong> — Injects JavaScript into unsubscribe landing pages to locate and click the unsubscribe button.</li>
+        <li><strong><code>storage</code></strong> — Saves run summaries and temporary progress state locally on your device.</li>
+        <li><strong><code>alarms</code></strong> — Keeps the background service worker active during long-running jobs to prevent Chrome from terminating it prematurely.</li>
+        <li><strong>Host permissions (<code>https://*/*</code>)</strong> — Required to visit unsubscribe pages, which can be hosted on any domain. Only URLs sourced directly from your own Gmail messages are ever visited.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="user-rights">
+      <div class="section-number">08</div>
+      <h2>Your Rights &amp; Controls</h2>
+      <p>You retain full control over the Extension's access to your data at all times:</p>
+      <ul>
+        <li><strong>Revoke access:</strong> You can revoke the Extension's Gmail access at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account Permissions</a> and removing the Extension's authorization.</li>
+        <li><strong>Sign out:</strong> Use the "Sign out" button within the Extension popup to immediately invalidate the cached OAuth token.</li>
+        <li><strong>Remove the Extension:</strong> Uninstalling the Extension from Chrome immediately deletes all locally stored data, including run history and any cached state.</li>
+        <li><strong>Nothing runs automatically:</strong> The Extension never accesses your Gmail account in the background. It only acts when you explicitly click the Start button.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="children">
+      <div class="section-number">09</div>
+      <h2>Children's Privacy</h2>
+      <p>This Extension is not directed at children under the age of 13, and we do not knowingly collect any personal information from children. The Extension is intended for use by adults managing their own email accounts.</p>
+    </div>
+
+    <div class="section" id="contact">
+      <div class="section-number">10</div>
+      <h2>Contact &amp; Updates</h2>
+      <p>If you have questions or concerns about this Privacy Policy, please contact the developer at the email address associated with the Chrome Web Store listing for this Extension.</p>
+      <p>This Privacy Policy may be updated from time to time. When changes are made, the effective date at the top of this page will be updated. Continued use of the Extension after a policy update constitutes acceptance of the revised terms. We encourage you to review this page periodically.</p>
+      <div class="callout">
+        <strong>Note:</strong> Because this Extension processes no personal data on any server, there is no data to delete, export, or correct upon request. All data remains on your local device under your full control.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>Gmail Unsubscriber &nbsp;·&nbsp; Privacy Policy v1.0</span>
+    <span>Effective April 20, 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
